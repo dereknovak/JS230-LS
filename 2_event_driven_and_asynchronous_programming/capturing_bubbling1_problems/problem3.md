@@ -1,0 +1,1 @@
+Only 2 alerts will be prompted. While it appears that `elem0` is a parent element, it is indeed separate and does not fire when `elem4` is clicked.
