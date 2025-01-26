@@ -1,17 +1,30 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const answer = Math.floor(Math.random() * 100) + 1;
+  let answer = Math.floor(Math.random() * 100) + 1;
   const input = document.getElementById('guess');
   const form = document.querySelector('form');
-  let guess;
-
-  // console.log(input);
-
+  const link = document.querySelector('a');
+  const paragraph = document.querySelector('p');
+  
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    guess = parseInt(input.innerText);
+    let guess = parseInt(input.value, 10);
+    let message;
+
+    if (guess > answer) {
+      message = `My number is lower than ${guess}`;
+    } else if (guess < answer) {
+      message = `My number is higher than ${guess}`;
+    } else {
+      message = 'Correct!';
+    }
+
+    paragraph.innerText = message;
   });
 
-  console.log(guess);
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    answer = Math.floor(Math.random() * 100) + 1;
+    paragraph.innerText = 'Guess a number from 1 to 100';
+    input.value = '';
+  });
 });
-
-// Unfinished
