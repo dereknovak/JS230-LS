@@ -9,9 +9,17 @@
       $(() => {
         $('form').on('submit', (e) => {
           e.preventDefault();
+          let $char = $(e.target).find("input[type=text]").val();
 
-          const $input = $(this).find('input[type=text]');
-          alert($input);
+          $(document).off('keypress').on('keypress', (e) => {
+            if ($char !== e.key) return;
+            $('a').trigger('click');
+          });
+        });
+        
+        $('a').on('click', (e) => {
+          e.preventDefault();
+          $('#accordion').slideToggle();
         });
       });
     </script>
@@ -32,5 +40,3 @@
     </main>
   </body>
 </html>
-
-<!-- Just started assignment -->
